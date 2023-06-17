@@ -19,7 +19,9 @@ static inline void deinit() {
 int main(int argc, char* argv[]) {
     init();
     C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
-    char retstring[10];
+    char retstring[11];
+    double cnt = -10;
+    int ret = 0;
     while (aptMainLoop()) {
         hidScanInput();
         u32 kDown = hidKeysDown();
@@ -29,8 +31,11 @@ int main(int argc, char* argv[]) {
         C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
         C2D_TargetClear(top, C2D_Color32(0xFF, 0x00, 0x00, 0xFF));
         C2D_SceneBegin(top);
-        int ret = drawTextBox("Hello I love food\nSussy\nb\naaa", 28);
-        sprintf(retstring, "%d", ret);
+        if (cnt > 0 && cnt < 30) {
+            ret = drawTextBox("Hello I love food\nSussy\nb\naaa", cnt);
+        }
+        cnt += 0.05f;
+        sprintf(retstring, "%f", cnt);
         drawText(0,0,0,1,C2D_Color32(0x00, 0x00, 0x00, 0xFF), retstring);
         C3D_FrameEnd(0);
     }

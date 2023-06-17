@@ -14,6 +14,7 @@ int fillTextIntoString(char* text) {
     const char* delim = "\n";
     pch = strtok(text, delim);
     while (pch != NULL) {
+        memset(textstr[cnt], 0x00, 100);
         snprintf(textstr[cnt], 100, "%s", pch);
         if (cnt > 4) {
             return -1; //too many lines for message, max 4
