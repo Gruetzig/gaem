@@ -1,12 +1,6 @@
 #include "boxes.h"
 
-#define SCREEN_WIDTH_TOP 400
-#define SCREEN_WIDTH_BOTTOM 320
-#define SCREEN_HEIGHT_TOP 240
-#define SCREEN_HEIGHT_BOTTOM 240
-
 char textstr[4][100];
-
 
 int fillTextIntoString(char* text) {
     int cnt = 0;
@@ -47,6 +41,7 @@ int drawTextBox(char *_text, int progress) {
         C2D_Color32(0x00, 0xFF, 0xFF, 0xFF)
     );
     char text[strlen(_text)+1];
+    memset(text, 0, strlen(_text)+1);
     strncpy(text, _text, progress);
     int len = fillTextIntoString(text);
     if (len > 0) {
