@@ -73,7 +73,7 @@ int doCharacterStuff(char* novel, int pos) {
 }
 
 void prepareNovel() {
-    FILE *file = fopen("romfs:/novel.txt", "r");
+    FILE *file = fopen("romfs:/gfx/novel.txt", "r");
 
     fseek(file, 0, SEEK_END);
     u32 size = ftell(file);

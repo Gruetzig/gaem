@@ -8,3 +8,7 @@
 
 #include "scene.h"
 #include "boxes.h"
+
+void prepareNovel();
+void exitNovel();
+void DoStuff(u32 keys);
