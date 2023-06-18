@@ -41,8 +41,8 @@ DATA		:=	data
 INCLUDES	:=	include
 GRAPHICS	:=	gfx
 ROMFS		:=	romfs
-GFXBUILD	:=	$(ROMFS)
-#GFXBUILD	:=	$(ROMFS)/gfx
+#GFXBUILD	:=	$(ROMFS)
+GFXBUILD	:=	$(ROMFS)/gfx
 
 #---------------------------------------------------------------------------------
 # options for code generation

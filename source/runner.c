@@ -21,15 +21,16 @@ int parseText(char* novel, int pos) {
     curText = malloc(strlen(text)+1);
     memset(curText, 0x00, strlen(text)+1);
     sprintf(curText, "%s", text);
+    return token-novel+pos;
 }
 
 int doBackgroundStuff(char* novel, int pos) {
     char* token;
-    token = strtok(novel, " ");
+    token = strtok(novel+pos, " ");
     token = strtok(NULL, " ");
     curbg = atoi(token);
     token = strstr(novel+pos, "\n")+1;
-    return token-novel;
+    return token-novel+pos;
 }
 
 int popCharacters(char* novel, int pos, bool continues) {
@@ -49,7 +50,7 @@ int popCharacters(char* novel, int pos, bool continues) {
     if (continues) {
     char* token;
     token = strstr(novel+pos, "\n")+1;
-    return token-novel;
+    return token-novel+pos;
     }
     return 0;
 }
@@ -67,7 +68,7 @@ int doCharacterStuff(char* novel, int pos) {
     chead->scale = atoi(token);
     token = strstr(novel+pos, "\n")+1;
     currentCharacter = chead;
-    return token-novel;
+    return token-novel+pos;
     
 }
 
@@ -76,7 +77,6 @@ void prepareNovel() {
 
     fseek(file, 0, SEEK_END);
     u32 size = ftell(file);
-    u32 file_size = size;
     fseek(file, 0, SEEK_SET);
     novel = malloc(size);
     fread(novel, size, 1, file);
@@ -86,7 +86,7 @@ void prepareNovel() {
     novelsize = strlen(novel)+1;
 }
 
-exitNovel() {
+void exitNovel() {
     popCharacters("", 0, false);
     free(novel);
 
